@@ -17,8 +17,6 @@ end
 Add the following to your `config.exs` file:
 
 ```elixir
-
-```elixir
 # config/releases.exs
 
 config :logger,
