@@ -2,9 +2,11 @@ defmodule Hyperdx do
   def send(messages) do
     json_lines = messages
       |> Enum.map(fn message ->
-        %{message | __hdx_sv: config(:service)}
+        decoded = Jason.decode!(message)
+        updated = Map.put(decoded, :__hdx_sv, config(:service))
+        Jason.encode!(updated)
       end)
-      |> Enum.join("\n") 
+      |> Enum.join("\n")
 
     case HTTPoison.post(url(), json_lines, default_headers()) do
       {:ok, %HTTPoison.Response{status_code: code, body: body}} ->
