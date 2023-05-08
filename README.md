@@ -1,4 +1,4 @@
-# HyperDX elixir backend
+# HyperDX elixir backend (BETA)
 Elixir logging backend that sends your logs to HyperDX using the https bulk input 
 
 ## Installation
@@ -8,28 +8,36 @@ The package can be installed by adding `hyperdx` to your list of dependencies in
 ```elixir
 def deps do
   [
-    {:hyperdx, "~> 0.1.0"}
+    {:hyperdx, "~> 0.1.3"}
   ]
 end
 ```
 
-## Usage
-If you do not already have a HyperDX account, please signup for one and obtain the following details:
-1. Listener host
-2. Data shipping token
+## Configure Logger
+Add the following to your `config.exs` file:
 
-Once you have these, you are all set to integrate your Elixir app with hyperdx.
+```elixir
 
 ```elixir
 # config/releases.exs
-config :logger, 
-  level: :info, 
-  backends: [:console, {hyperdx.Backend, :hyperdx}]
 
-config :logger, 
+config :logger,
+  level: :info,
+  backends: [:console, {Hyperdx.Backend, :hyperdx}],
   hyperdx: [
+    service: System.get_env("OTEL_SERVICE_NAME"),
     token: System.get_env("HYPERDX_API_KEY")
   ]
+```
+
+### Configure Environment Variables
+
+Afterwards you'll need to configure the following environment variables in your
+shell to ship telemetry to HyperDX:
+
+```sh
+export HYPERDX_API_KEY=<YOUR_HYPERDX_API_KEY_HERE> \
+OTEL_SERVICE_NAME='<NAME_OF_YOUR_APP_OR_SERVICE>'
 ```
 
 That's it. You should now be able to see your app logs by heading over to [HyperDX](https://hyperdx.io)!

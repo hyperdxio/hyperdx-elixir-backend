@@ -4,9 +4,10 @@ defmodule Hyperdx.Formatter do
   # https://github.com/elixir-lang/elixir/blob/74bfab8ee271e53d24cb0012b5db1e2a931e0470/lib/logger/lib/logger/formatter.ex
 
   def format(lvl, msg, ts, md) do
+    {_, hostname} = :inet.gethostname()
     md
     |> metadata()
-    |> Enum.into(%{level: lvl, message: to_string(msg), timestamp: format_timestamp(ts)})
+    |> Enum.into(%{level: lvl, message: to_string(msg), timestamp: format_timestamp(ts), __hdx_h: to_string(hostname)})
     |> Jason.encode!()
   end
 
