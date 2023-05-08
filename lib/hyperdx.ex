@@ -1,6 +1,10 @@
 defmodule Hyperdx do
   def send(messages) do
-    json_lines = Enum.join(messages, "\n")
+    json_lines = messages
+      |> Enum.map(fn message ->
+        %{message | __hdx_sv: config(:service)}
+      end)
+      |> Enum.join("\n") 
 
     case HTTPoison.post(url(), json_lines, default_headers()) do
       {:ok, %HTTPoison.Response{status_code: code, body: body}} ->
@@ -32,6 +36,11 @@ defmodule Hyperdx do
   defp config(:token) do
     configs = Application.get_env(:logger, :hyperdx)
     Keyword.fetch!(configs, :token)
+  end
+
+  defp config(:service) do
+    configs = Application.get_env(:logger, :hyperdx)
+    Keyword.fetch!(configs, :service)
   end
 
   defp config(:base_url) do
