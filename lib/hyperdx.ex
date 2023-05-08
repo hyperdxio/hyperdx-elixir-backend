@@ -36,6 +36,6 @@ defmodule Hyperdx do
 
   defp config(:base_url) do
     configs = Application.get_env(:logger, :hyperdx)
-    Keyword.fetch!(configs, :base_url, "https://in.hyperdx.io")
+    Keyword.fetch!(configs, :base_url)
   end
 end
