@@ -9,7 +9,9 @@ defmodule Hyperdx.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
+      organization: "HyperDX",
       source_url: "https://github.com/hyperdxio/hyperdx-elixir-backend",
+      homepage_url: "https://hyperdx.io",
       name: "HyperDX",
       package: package()
     ]
