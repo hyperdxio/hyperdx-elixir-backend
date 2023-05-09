@@ -8,7 +8,7 @@ The package can be installed by adding `hyperdx` to your list of dependencies in
 ```elixir
 def deps do
   [
-    {:hyperdx, "~> 0.1.3"}
+    {:hyperdx, "~> 0.1.5"}
   ]
 end
 ```
