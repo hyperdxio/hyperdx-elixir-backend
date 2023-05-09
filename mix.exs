@@ -4,7 +4,7 @@ defmodule Hyperdx.MixProject do
   def project do
     [
       app: :hyperdx,
-      version: "0.1.3",
+      version: "0.1.5",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -28,7 +28,7 @@ defmodule Hyperdx.MixProject do
   defp deps do
     [
       {:httpoison, "~> 1.8"},
-      {:jason, "~> 1.4"}
+      {:jason, "~> 1.0"}
     ]
   end
 

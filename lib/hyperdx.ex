@@ -49,7 +49,7 @@ defmodule Hyperdx do
     configs = Application.get_env(:logger, :hyperdx)
     case Keyword.fetch(configs, :base_url) do
       {:ok, base_url} -> base_url
-      :error -> "https://in.hyperdx.io"
+      :error -> "https://in.hyperdx.io/"
     end
   end
 end
