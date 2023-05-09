@@ -1,4 +1,4 @@
-# HyperDX elixir backend (BETA)
+# HyperDX elixir backend
 Elixir logging backend that sends your logs to HyperDX using the https bulk input 
 
 ## Installation
@@ -8,7 +8,7 @@ The package can be installed by adding `hyperdx` to your list of dependencies in
 ```elixir
 def deps do
   [
-    {:hyperdx, "~> 0.1.5"}
+    {:hyperdx, "~> 0.1.6"}
   ]
 end
 ```
@@ -21,11 +21,7 @@ Add the following to your `config.exs` file:
 
 config :logger,
   level: :info,
-  backends: [:console, {Hyperdx.Backend, :hyperdx}],
-  hyperdx: [
-    service: System.get_env("OTEL_SERVICE_NAME"),
-    token: System.get_env("HYPERDX_API_KEY")
-  ]
+  backends: [:console, {Hyperdx.Backend, :hyperdx}]
 ```
 
 ### Configure Environment Variables

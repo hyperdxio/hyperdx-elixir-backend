@@ -24,7 +24,8 @@ defmodule Hyperdx do
   end
 
   def url() do
-    "#{config(:base_url)}?hdx_platform=elixir"
+    base_url = System.get_env("HYPERDX_BASE_URL") || "https://in.hyperdx.io/"
+    "#{base_url}?hdx_platform=elixir"
   end
 
   def default_headers do
@@ -35,21 +36,11 @@ defmodule Hyperdx do
     ]
   end
 
-  defp config(:token) do
-    configs = Application.get_env(:logger, :hyperdx)
-    Keyword.fetch!(configs, :token)
+  def config(:token) do
+    System.get_env("HYPERDX_API_KEY")
   end
 
-  defp config(:service) do
-    configs = Application.get_env(:logger, :hyperdx)
-    Keyword.fetch!(configs, :service)
-  end
-
-  defp config(:base_url) do
-    configs = Application.get_env(:logger, :hyperdx)
-    case Keyword.fetch(configs, :base_url) do
-      {:ok, base_url} -> base_url
-      :error -> "https://in.hyperdx.io/"
-    end
+  def config(:service) do
+    System.get_env("OTEL_SERVICE_NAME")
   end
 end
