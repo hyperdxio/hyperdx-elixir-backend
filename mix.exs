@@ -27,7 +27,7 @@ defmodule Hyperdx.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 1.8"},
+      {:httpoison, ">= 1.8.0"},
       {:jason, "~> 1.0"}
     ]
   end
