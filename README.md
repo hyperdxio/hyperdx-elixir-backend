@@ -1,4 +1,21 @@
 # HyperDX elixir backend
+
+> **Deprecated:** the `hyperdx` Hex package is no longer maintained, and the
+> ClickStack SDKs do not cover Elixir. OpenTelemetry's Erlang/Elixir logs
+> support is still in development; its only `:logger` handler,
+> `otel_log_handler` in `opentelemetry_experimental`, is experimental and
+> undocumented. Instead:
+>
+> - For logs, write them to stdout or a file and collect them with the
+>   OpenTelemetry Collector's
+>   [filelog receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/filelogreceiver).
+> - For traces, use the upstream
+>   [OpenTelemetry Erlang/Elixir SDK](https://opentelemetry.io/docs/languages/erlang/)
+>   (`opentelemetry`, `opentelemetry_api`, and `opentelemetry_exporter`). Point
+>   it at your collector with `OTEL_EXPORTER_OTLP_ENDPOINT`, pass your ingestion
+>   key with `OTEL_EXPORTER_OTLP_HEADERS=authorization=<key>`, and name your
+>   service with `OTEL_SERVICE_NAME`.
+
 Elixir logging backend that sends your logs to HyperDX using the https bulk input 
 
 ## Installation
